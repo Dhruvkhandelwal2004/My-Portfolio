@@ -58,6 +58,53 @@
     }
   }
 
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    if (!e.target.checkValidity()) {
+      e.target.reportValidity();
+      return;
+    }
+    if (isSubmitting) return;
+
+    isSubmitting = true;
+    const btn = document.getElementById('submit-btn');
+    const btnText = document.getElementById('btn-text');
+    const sendIcon = document.getElementById('send-icon');
+
+    btn.disabled = true;
+    btnText.textContent = 'Sending...';
+    sendIcon.style.display = 'none';
+
+    // Submit form via AJAX fetch to prevent page reload
+    const formData = new FormData(e.target);
+    fetch(e.target.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      isSubmitting = false;
+      btn.disabled = false;
+      btnText.textContent = 'Send Message';
+      sendIcon.style.display = '';
+      if (response.ok) {
+        e.target.reset();
+        showToast();
+      } else {
+        alert('Oops! There was a problem submitting your message.');
+      }
+    })
+    .catch(error => {
+      isSubmitting = false;
+      btn.disabled = false;
+      btnText.textContent = 'Send Message';
+      sendIcon.style.display = '';
+      alert('Oops! There was a problem submitting your message.');
+    });
+  }
+
   // ── Custom Scroll helper with slow, smooth animation ──
   function customScrollTo(targetPosition, targetDuration) {
     const html = document.documentElement;
