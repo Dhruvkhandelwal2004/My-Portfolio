@@ -58,33 +58,21 @@
     }
   }
 
-  // ── Smooth scroll ──
-  function scrollToSection(e, selector) {
-    if (e && e.preventDefault) e.preventDefault();
-    const el = document.querySelector(selector);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
-  }
-
-  function scrollToTop(e) {
-    if (e && e.preventDefault) e.preventDefault();
-    
-    // Temporarily disable CSS smooth scroll to allow custom animation control
+  // ── Custom Scroll helper with slow, smooth animation ──
+  function customScrollTo(targetPosition, targetDuration) {
     const html = document.documentElement;
     const originalScrollBehavior = html.style.scrollBehavior;
     html.style.scrollBehavior = 'auto';
 
     const startPosition = window.scrollY;
-    const targetPosition = 0;
     const distance = targetPosition - startPosition;
     if (distance === 0) {
       html.style.scrollBehavior = originalScrollBehavior;
       return;
     }
 
-    const duration = 2000; // Duration in milliseconds (2 seconds)
+    // Proportional duration: 0.6ms per pixel, capped between 800ms and 1600ms, unless explicitly provided
+    const duration = targetDuration || Math.min(1600, Math.max(800, Math.abs(distance) * 0.6));
     let startTime = null;
 
     // Quadratic easing in/out
@@ -104,12 +92,26 @@
         requestAnimationFrame(animation);
       } else {
         window.scrollTo(0, targetPosition);
-        // Restore original scroll behavior
         html.style.scrollBehavior = originalScrollBehavior;
       }
     }
 
     requestAnimationFrame(animation);
+  }
+
+  // ── Smooth scroll ──
+  function scrollToSection(e, selector) {
+    if (e && e.preventDefault) e.preventDefault();
+    const el = document.querySelector(selector);
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 80;
+      customScrollTo(top);
+    }
+  }
+
+  function scrollToTop(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    customScrollTo(0, 1600); // 1.6s scroll to top
   }
 
   // ── Footer year ──
@@ -190,28 +192,7 @@
   let isSubmitting = false;
   let toastTimeout = null;
 
-  function handleFormSubmit(e) {
-    e.preventDefault();
-    if (isSubmitting) return;
-
-    isSubmitting = true;
-    const btn = document.getElementById('submit-btn');
-    const btnText = document.getElementById('btn-text');
-    const sendIcon = document.getElementById('send-icon');
-
-    btn.disabled = true;
-    btnText.textContent = 'Sending...';
-    sendIcon.style.display = 'none';
-
-    setTimeout(() => {
-      isSubmitting = false;
-      btn.disabled = false;
-      btnText.textContent = 'Send Message';
-      sendIcon.style.display = '';
-      e.target.reset();
-      showToast();
-    }, 1500);
-  }
+  
 
   // ── Certificate Slider ──
   let certPage = 0;
