@@ -1,17 +1,17 @@
 /* ===================== CSS VARIABLES ===================== */
     :root {
-      --background: 0 0% 98%;
-      --foreground: 240 10% 4%;
-      --border: 240 6% 90%;
-      --card: 0 0% 100%;
-      --card-foreground: 240 10% 4%;
-      --primary: 180 100% 40%;
-      --primary-fg: 0 0% 98%;
-      --secondary: 240 5% 96%;
-      --secondary-fg: 240 10% 4%;
-      --muted: 240 5% 96%;
-      --muted-fg: 240 4% 46%;
-      --accent: 180 100% 40%;
+      --background: 240 10% 98%;      /* Sleek, cool slate-tinted background */
+      --foreground: 240 10% 12%;      /* High contrast dark slate foreground */
+      --border: 240 6% 83%;           /* Darker borders for crisp card definition */
+      --card: 0 0% 100%;              /* Clean white cards */
+      --card-foreground: 240 10% 12%; /* Dark slate text for card content */
+      --primary: 185 90% 30%;         /* Rich deep teal-cyan (high contrast, 4.6+:1 readability) */
+      --primary-fg: 0 0% 98%;         /* Near white text on primary backgrounds */
+      --secondary: 240 6% 92%;        /* More distinct secondary background for buttons/tags */
+      --secondary-fg: 240 10% 12%;    /* High contrast secondary foreground */
+      --muted: 240 6% 95%;            /* Clear muted background */
+      --muted-fg: 240 8% 38%;         /* Deeper gray for readable labels and description texts */
+      --accent: 185 90% 30%;          /* Saturated teal-cyan accent */
       --radius: 0.75rem;
       color-scheme: light;
     }
@@ -1440,6 +1440,10 @@
       min-height: 9.375rem;
       padding: 0.75rem 1rem;
       resize: vertical;
+    }
+
+    .form-textarea::-webkit-resizer {
+      display: none;
     }
 
     .btn-submit {
