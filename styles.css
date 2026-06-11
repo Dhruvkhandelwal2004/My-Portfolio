@@ -35,7 +35,10 @@
     /* ===================== RESET & BASE ===================== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -418,12 +421,73 @@
     /* ===================== HERO ===================== */
     #hero {
       position: relative;
+      min-height: 100vh;
       min-height: 100dvh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding-top: 5rem;
+      padding-top: 5.5rem;
+      padding-bottom: 6.5rem;
       overflow: hidden;
+    }
+
+    /* Scroll Down Indicator */
+    .scroll-down-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      z-index: 20;
+      opacity: 0.8;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .scroll-down-indicator:hover {
+      opacity: 1;
+      transform: translate(-50%, 4px);
+    }
+
+    .scroll-down-indicator .mouse {
+      width: 26px;
+      height: 42px;
+      border: 2px solid hsl(var(--muted-fg));
+      border-radius: 999px;
+      position: relative;
+    }
+
+    .scroll-down-indicator .wheel {
+      width: 4px;
+      height: 8px;
+      background-color: hsl(var(--primary));
+      border-radius: 2px;
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: scrollWheel 1.6s ease-out infinite;
+    }
+
+    @keyframes scrollWheel {
+      0% {
+        opacity: 0;
+        top: 8px;
+      }
+      20% {
+        opacity: 1;
+      }
+      60% {
+        opacity: 1;
+        top: 20px;
+      }
+      100% {
+        opacity: 0;
+        top: 24px;
+      }
     }
 
     .hero-blob-1 {
@@ -1905,8 +1969,10 @@
     @media (max-width: 1023px) {
       #hero {
         padding-top: 6.5rem;
-        padding-bottom: 4rem;
-        min-height: auto;
+        padding-bottom: 7rem;
+      }
+      .scroll-down-indicator {
+        bottom: 1.5rem;
       }
       .hero-badge {
         margin-bottom: 1.5rem;
@@ -1927,11 +1993,71 @@
     @media (max-width: 480px) {
       #hero {
         padding-top: 6rem;
-        padding-bottom: 3rem;
+        padding-bottom: 5.5rem;
       }
       .hero-title { font-size: 2.25rem; margin-bottom: 1rem; }
       .hero-subtitle { margin-bottom: 1.75rem; }
       .hero-socials { margin-top: 2rem; }
       .about-badge { right: 0; bottom: -2rem; }
       .contact-info-card { padding: 1.5rem; }
+    }
+
+    /* Screen height-based responsiveness to prevent scrolling on short viewports */
+    @media (max-height: 720px) {
+      #hero {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+      }
+      .hero-badge {
+        margin-bottom: 1rem;
+      }
+      .hero-title {
+        font-size: clamp(1.85rem, 5vh, 2.75rem);
+        margin-bottom: 0.75rem;
+      }
+      .hero-subtitle {
+        margin-bottom: 1.25rem;
+        font-size: 0.95rem;
+        max-width: 36rem;
+      }
+      .hero-cta {
+        gap: 0.75rem;
+      }
+      .hero-socials {
+        margin-top: 1.5rem;
+      }
+      .scroll-down-indicator {
+        bottom: 1rem;
+      }
+      .scroll-down-indicator .mouse {
+        width: 22px;
+        height: 36px;
+      }
+      .scroll-down-indicator .wheel {
+        top: 6px;
+      }
+    }
+
+    @media (max-height: 580px) {
+      #hero {
+        padding-top: 4.5rem;
+        padding-bottom: 2rem;
+      }
+      .hero-badge {
+        display: none; /* Hide badge on extremely short screens to save vertical space */
+      }
+      .hero-title {
+        font-size: clamp(1.65rem, 6vh, 2.25rem);
+        margin-bottom: 0.5rem;
+      }
+      .hero-subtitle {
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+      }
+      .hero-socials {
+        margin-top: 1rem;
+      }
+      .scroll-down-indicator {
+        display: none; /* Hide scroll down indicator on very short screens to avoid overlap */
+      }
     }
