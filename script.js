@@ -241,33 +241,7 @@
 
   
 
-  // ── Certificate Slider ──
-  let certPage = 0;
-  const certTrack = document.getElementById('cert-track');
-  const certSlides = certTrack ? certTrack.querySelectorAll('.cert-slide') : [];
-  const certTotal = certSlides.length;
 
-  function certUpdateUI() {
-    if (!certTrack) return;
-    certTrack.style.transform = `translateX(-${certPage * 100}%)`;
-    document.getElementById('cert-prev').disabled = certPage === 0;
-    document.getElementById('cert-next').disabled = certPage === certTotal - 1;
-    document.querySelectorAll('.cert-dot').forEach((d, i) => {
-      d.classList.toggle('active', i === certPage);
-    });
-  }
-
-  function certSlide(dir) {
-    certPage = Math.max(0, Math.min(certTotal - 1, certPage + dir));
-    certUpdateUI();
-  }
-
-  function certGoTo(index) {
-    certPage = index;
-    certUpdateUI();
-  }
-
-  certUpdateUI();
 
   function showToast() {
     const toast = document.getElementById('toast');
