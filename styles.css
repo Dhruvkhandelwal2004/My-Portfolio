@@ -2241,6 +2241,20 @@ a.contact-info-value:hover {
   #hero {
     padding-top: 6.5rem;
     padding-bottom: 4.5rem;
+    background:
+      radial-gradient(circle at 50% 34%, hsl(var(--primary) / 0.08), transparent 34rem),
+      radial-gradient(circle at 16% 20%, rgba(148, 255, 226, 0.035), transparent 22rem),
+      linear-gradient(180deg, #020504 0%, hsl(var(--background)) 58%, #030706 100%);
+  }
+  .hero-grid {
+    background-image:
+      linear-gradient(hsl(var(--primary) / 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.15) 1px, transparent 1px);
+    opacity: 0.84;
+  }
+  .hero-blob-1,
+  .hero-blob-2 {
+    opacity: 0.42;
   }
   .hero-socials {
     margin-top: 2.5rem;
