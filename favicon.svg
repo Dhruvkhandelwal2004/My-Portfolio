@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .dk-letter-k { fill: #f8fafc; }
+    @media (prefers-color-scheme: light) {
+      .dk-letter-k { fill: #0f172a; }
+    }
+  </style>
+  <path
+    fill="#2dd4bf"
+    fill-rule="evenodd"
+    d="M3 8h13c11 0 18 9.3 18 24s-7 24-18 24H3V8Zm11 12v24h2c5 0 7-4.8 7-12s-2-12-7-12h-2Z" />
+  <path
+    class="dk-letter-k"
+    d="M33 8h11v17L53 8h11L52 30l12 26H52l-8-20v20H33V8Z" />
+</svg>
