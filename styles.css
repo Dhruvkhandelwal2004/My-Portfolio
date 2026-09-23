@@ -1286,7 +1286,7 @@ button {
   transform: scale(1.05);
 }
 
-.skill-item .monochrome-brand-icon path:not(.excel-mark-letter),
+.skill-item .monochrome-brand-icon path,
 .skill-item .monochrome-brand-icon circle {
   fill: currentColor;
 }
