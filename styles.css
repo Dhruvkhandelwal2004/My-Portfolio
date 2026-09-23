@@ -1269,21 +1269,13 @@ button {
 }
 
 .skill-item:hover {
-  background: hsl(var(--card-bg));
   border-color: hsl(var(--primary) / 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
 }
 
 .skill-item i, .skill-item svg {
   font-size: 1.75rem;
   color: hsl(var(--foreground-muted));
   transition: color 0.2s, transform 0.2s;
-}
-
-.skill-item:hover i, .skill-item:hover svg {
-  color: hsl(var(--primary));
-  transform: scale(1.05);
 }
 
 .skill-item .monochrome-brand-icon path,
