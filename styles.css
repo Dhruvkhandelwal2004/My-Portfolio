@@ -1272,6 +1272,11 @@ button {
   border-color: hsl(var(--primary) / 0.3);
 }
 
+.skill-item:hover i,
+.skill-item:hover svg {
+  color: hsl(var(--primary)) !important;
+}
+
 .skill-item i, .skill-item svg {
   font-size: 1.75rem;
   color: hsl(var(--foreground-muted));
