@@ -13,6 +13,30 @@
     navbar.classList.toggle('scrolled', window.scrollY > 20);
   });
 
+  const scrollProgress = document.getElementById('scroll-progress');
+  let scrollProgressFrame = null;
+
+  function updateScrollProgress() {
+    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollableHeight > 0
+      ? Math.min(Math.max(window.scrollY / scrollableHeight, 0), 1)
+      : 0;
+
+    scrollProgress.style.transform = `scaleX(${progress})`;
+    scrollProgressFrame = null;
+  }
+
+  function requestScrollProgressUpdate() {
+    if (scrollProgressFrame === null) {
+      scrollProgressFrame = requestAnimationFrame(updateScrollProgress);
+    }
+  }
+
+  window.addEventListener('scroll', requestScrollProgressUpdate, { passive: true });
+  window.addEventListener('resize', requestScrollProgressUpdate);
+  window.addEventListener('load', requestScrollProgressUpdate);
+  requestScrollProgressUpdate();
+
   // ── Mobile menu ──
   let mobileMenuOpen = false;
   function toggleMobileMenu() {
