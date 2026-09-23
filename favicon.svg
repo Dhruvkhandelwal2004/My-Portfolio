@@ -8,8 +8,8 @@
   <path
     fill="#2dd4bf"
     fill-rule="evenodd"
-    d="M3 8h13c11 0 18 9.3 18 24s-7 24-18 24H3V8Zm11 12v24h2c5 0 7-4.8 7-12s-2-12-7-12h-2Z" />
+    d="M3 10h13c11 0 18 8.5 18 22s-7 22-18 22H3V10Zm11 11v22h2c5 0 7-4.4 7-11s-2-11-7-11h-2Z" />
   <path
     class="dk-letter-k"
-    d="M33 8h11v17L53 8h11L52 30l12 26H52l-8-20v20H33V8Z" />
+    d="M37 10h10v15l8-15h9L53 30l11 24H53l-6-18v18H37V10Z" />
 </svg>
